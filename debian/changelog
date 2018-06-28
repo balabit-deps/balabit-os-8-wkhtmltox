@@ -1,3 +1,9 @@
+wkhtmltox (0.12.5-3-5.7) precise; urgency=low
+
+  * Fixed libpng version
+
+ -- Szabolcs Szondi <szabolcs.szondi@balabit.com>  Wed, 27 Wed 2018 12:44:32 +0200
+
 wkhtmltox (0.12.5-2-5.7) precise; urgency=low
 
   * Follow up upsteram and support bionic build
