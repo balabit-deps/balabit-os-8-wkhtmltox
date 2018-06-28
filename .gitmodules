@@ -1,4 +1,3 @@
 [submodule "qt"]
-  path   = qt
-  url    = ../qt.git
-  branch = wk_4.8.7
+	path = qt
+	url = git@git.balabit:balabit-os-7.0/qt-static.git
