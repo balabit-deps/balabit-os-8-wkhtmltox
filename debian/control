@@ -6,7 +6,7 @@ Homepage: http://wkhtmltopdf.org
 
 Package: wkhtmltox
 Architecture: amd64
-Depends: fontconfig, libfontconfig1, libfreetype6, libpng12-0, zlib1g, libjpeg8, libssl1.0.0, libx11-6, libxext6, libxrender1, libstdc++6, libc6
+Depends: fontconfig, libfontconfig1, libfreetype6, libpng16-16, zlib1g, libjpeg8, libssl1.0.0, libx11-6, libxext6, libxrender1, libstdc++6, libc6
 Description: convert HTML to PDF and various image formats using QtWebkit
  Tool for convert HTML to PDF with QtWebkit without X server.
 
