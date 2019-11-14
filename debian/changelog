@@ -1,3 +1,9 @@
+wkhtmltox (0.12.5-3-5.7bb1) bionic; urgency=medium
+
+  * Add copyright file to the debian packaging
+
+ -- Platform Team <devnull@dev.null>  Thu, 14 Nov 2019 17:24:27 +0100
+
 wkhtmltox (0.12.5-3-5.7) precise; urgency=low
 
   * Fixed libpng version
