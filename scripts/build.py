@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Copyright 2014 wkhtmltopdf authors
 #
@@ -37,6 +37,7 @@ BUILDERS = {
     'setup-schroot-wheezy':  'setup_schroot',
     'setup-schroot-trusty':  'setup_schroot',
     'setup-schroot-precise': 'setup_schroot',
+    'setup-schroot-focal':   'setup_schroot',
     'update-all-schroots':   'update_schroot',
     'centos5-i386':          'linux_schroot',
     'centos5-amd64':         'linux_schroot',
@@ -48,6 +49,8 @@ BUILDERS = {
     'trusty-amd64':          'linux_schroot',
     'precise-i386':          'linux_schroot',
     'precise-amd64':         'linux_schroot',
+    'focal-i386':            'linux_schroot',
+    'focal-amd64':           'linux_schroot',
     'mingw-w64-cross-win32': 'mingw64_cross',
     'mingw-w64-cross-win64': 'mingw64_cross',
     'posix-local':           'posix_local',
@@ -208,6 +211,15 @@ FPM_SETUP = {
         '--depends':         ['fontconfig', 'libfontconfig1', 'libfreetype6', 'libpng16-16', 'zlib1g', 'libjpeg8',
                               'libssl1.0.0', 'libx11-6', 'libxext6', 'libxrender1', 'libstdc++6', 'libc6']
     },
+    'focal': {
+        '-t': 'deb',
+        '--deb-compression': 'xz',
+        '--provides': 'wkhtmltopdf',
+        '--conflicts': 'wkhtmltopdf',
+        '--replaces': 'wkhtmltopdf',
+        '--depends': ['fontconfig', 'libfontconfig1', 'libfreetype6', 'libpng16-16', 'zlib1g', 'libjpeg8',
+                      'libssl1.1', 'libx11-6', 'libxext6', 'libxrender1', 'libstdc++6', 'libc6']
+    },
     'centos5': {
         '-t':                'rpm',
         '--epoch':           '1',
@@ -278,6 +290,22 @@ deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe 
         ('write_file', 'update.sh', 'apt-get update\napt-get dist-upgrade --assume-yes\n'),
         ('fpm_setup',  'fpm_package.sh'),
         ('schroot_conf', 'Ubuntu Precise')
+    ],
+
+    'focal': [
+        ('debootstrap', 'focal', 'http://archive.ubuntu.com/ubuntu/'),
+        ('write_file', 'etc/apt/sources.list', """
+deb http://archive.ubuntu.com/ubuntu/ focal          main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ focal-updates  main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ focal-security main restricted universe multiverse"""),
+        ('shell', 'apt-get update'),
+        ('shell', 'apt-get dist-upgrade --assume-yes'),
+        ('shell', 'apt-get install --assume-yes xz-utils libssl-dev libpng-dev libjpeg8-dev zlib1g-dev rubygems'),
+        ('shell', 'apt-get install --assume-yes libfontconfig1-dev libfreetype6-dev libx11-dev libxext-dev libxrender-dev'),
+        ('shell', 'gem install fpm ronn --no-ri --no-rdoc'),
+        ('write_file', 'update.sh', 'apt-get update\napt-get dist-upgrade --assume-yes\n'),
+        ('fpm_setup',  'fpm_package.sh'),
+        ('schroot_conf', 'Ubuntu Focal')
     ],
 
     'centos5': [

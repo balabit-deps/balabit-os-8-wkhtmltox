@@ -15,11 +15,12 @@ override_dh_auto_configure:
 	fi \
 
 override_dh_auto_build:
-	scripts/build.py precise-amd64 -debug
+	sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 10 --slave /usr/bin/g++ g++ /usr/bin/g++-7
+	scripts/build.py focal-amd64 -debug
 
 override_dh_install:
 	mkdir -p $$(pwd)/debian/wkhtmltox/usr/bin
-	cp $$(pwd)/static-build/precise-amd64-dbg/dist/bin/wkhtmltopdf $$(pwd)/debian/wkhtmltox/usr/bin
+	cp $$(pwd)/static-build/focal-amd64-dbg/dist/bin/wkhtmltopdf $$(pwd)/debian/wkhtmltox/usr/bin
 
 override_dh_strip:
 	dh_strip -pwkhtmltox --dbg-package=wkhtmltox-dbg
