@@ -1,3 +1,9 @@
+wkhtmltox (0.12.5-3-5.7bb2) focal; urgency=medium
+
+  * Fix build for Focal Fossa
+
+ -- David Dusa <david.dusa@quest.com>  Tue, 26 Jan 2021 10:24:27 +0100
+
 wkhtmltox (0.12.5-3-5.7bb1) bionic; urgency=medium
 
   * Add copyright file to the debian packaging
